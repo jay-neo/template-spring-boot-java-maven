@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: example-server
+  profiles:
+    active: dev
+  security:
+    user:
+      name: admin
+      password: admin
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  graphql:
+    graphiql:
+      enabled: true
+      path: /graphiql
+      endpoint: /graphql
+
+cors:
+  origin:
+    allow: "cors.origin.allow"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["prometheus"]
+  health:
+    show-details: always

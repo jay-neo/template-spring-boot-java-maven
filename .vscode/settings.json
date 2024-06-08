@@ -1,0 +1,6 @@
+{
+  "files.autoSave": "onFocusChange",
+  "editor.formatOnSave": true,
+  "maven.view": "flat",
+  "java.configuration.updateBuildConfiguration": "automatic"
+}

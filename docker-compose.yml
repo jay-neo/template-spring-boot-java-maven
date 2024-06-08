@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: prometheus
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - my-network
+
+  prometheus:
+    image: prom/prometheus:v2.44.0
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitor/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - my-network
+
+  grafana:
+    image: grafana/grafana:9.5.2
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    volumes:
+      - ./monitor/grafana/provisioning/datasources.yml:/etc/grafana/provisioning/datasources.yml
+    networks:
+      - my-network
+
+networks:
+  my-network:
